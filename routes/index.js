@@ -1,7 +1,10 @@
 import { Router } from "express";
-import { getTasks } from "../controllers/index.js";
+import actions from "../controllers/index.js";
 
 const router = Router();
 
-router.get("/", getTasks);
+router.get("/", actions.getTasks);
+
+router.get("/task", actions.getTask);
+
 export default router;
