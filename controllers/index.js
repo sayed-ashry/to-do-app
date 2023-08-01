@@ -4,6 +4,7 @@ const addTask = (req, res) => {
 
 const createtask = (req, res) => {
   const task = req.body.task;
+  console.log(task)
   res.render("createtask", { task: task });
 };
 
