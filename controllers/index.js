@@ -1,21 +1,15 @@
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
-
-const dir = dirname(fileURLToPath(import.meta.url));
-
-const getTasks = (req, res) => {
-  const p = join(dir, "../", "public", "views", "tasks.html");
-  res.sendFile(p);
+const addTask = (req, res) => {
+  res.render("index");
 };
 
-const getTask = (req, res) => {
-  const p = join(dir, "../", "public", "views", "taskdetail.html");
-  res.sendFile(p);
+const createtask = (req, res) => {
+  const task = req.body.task;
+  res.render("createtask", { task: task });
 };
 
 const actions = {
-  getTasks,
-  getTask,
+  addTask,
+  createtask,
 };
 
 export default actions;

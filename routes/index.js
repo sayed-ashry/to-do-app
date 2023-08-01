@@ -3,8 +3,8 @@ import actions from "../controllers/index.js";
 
 const router = Router();
 
-router.get("/", actions.getTasks);
+router.get("/", actions.addTask);
 
-router.get("/task", actions.getTask);
+router.post("/addTask", actions.createtask);
 
 export default router;

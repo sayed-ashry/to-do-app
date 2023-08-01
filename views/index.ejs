@@ -1,0 +1,23 @@
+<%- include('./includes/head')  %>
+
+
+<div class="row">
+  
+  <form action="/addTask" method="post">
+
+    <label for="task" class="form-label">Write your task : </label>
+    <div class="input-group mb-3">
+
+      <input type="text" name="task" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send it!</button>
+
+  </form>
+</div>
+
+
+
+
+
+<%- include('./includes/footer')  %>
