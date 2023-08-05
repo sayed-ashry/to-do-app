@@ -1,6 +1,13 @@
 import Task from "../models/task.js";
 
-const getIndex = (req, res) => res.render("home", { path: "/" });
+const getTasks = async (req, res) => {
+  try {
+    const data = await Task.find();
+    res.render("allTasks", { tasks: data, path: "/" });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const taskForm = (req, res) => res.render("addTask", { path: "/addTask" });
 
@@ -15,20 +22,33 @@ const createTask = async (req, res) => {
   }
 };
 
-const getTasks = async (req, res) => {
+const getTask = async (req, res) => {
   try {
-    const result = await Task.find();
-    res.render("allTasks", { tasks: result, path: "/tasksList" });
+    const id = req.params.id;
+    const data = await Task.findById(id);
+    res.render("editTask", { path: "/addTask", task: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const editTask = async (req, res) => {
+  try {
+    const { id, title } = req.body;
+    const data = await Task.findById(id);
+    data.title = title;
+    await data.save();
+    res.redirect("/");
   } catch (err) {
     console.log(err);
   }
 };
 
 const cancelTask = async (req, res) => {
-  const id = req.params.id;
   try {
+    const id = req.params.id;
     await Task.findOneAndDelete(id);
-    res.redirect("/tasksList");
+    res.redirect("/");
   } catch (err) {
     console.log(err);
   }
@@ -38,8 +58,9 @@ const actions = {
   taskForm,
   createTask,
   getTasks,
-  getIndex,
   cancelTask,
+  getTask,
+  editTask,
 };
 
 export default actions;

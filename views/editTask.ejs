@@ -1,0 +1,17 @@
+<%- include('./includes/head')  %>
+<%- include('./includes/nav')  %>
+
+<div class="row">
+  <form action="/editTask" method="post" onsubmit="formValidation(event)">
+    <label for="title" class="form-label">Write your task : </label>
+    <div class="input-group mb-3">
+      <input type="hidden" name="id" class="form-control" value="<%= task.id %>">
+      <input type="text" name="title" class="form-control" value="<%= task.title %>">
+    </div>
+    <button type="submit" class="btn btn-primary">Send it!</button>
+  </form>
+  <p id="msg"></p>
+</div>
+
+<%- include('./includes/footer')  %>
+<script src="/js/main.js"></script>
