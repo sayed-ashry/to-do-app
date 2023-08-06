@@ -9,12 +9,22 @@ const getTasks = async (req, res) => {
   }
 };
 
+const getTaskDetails = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Task.findById(id);
+    res.render("taskDetail", { path: "/", item: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const taskForm = (req, res) => res.render("addTask", { path: "/addTask" });
 
 const createTask = async (req, res) => {
   try {
-    const title = req.body.title;
-    const task = new Task({ title: title });
+    const { title, role } = req.body;
+    const task = new Task({ title: title, role: role });
     await task.save();
     res.redirect("/");
   } catch (err) {
@@ -58,6 +68,7 @@ const actions = {
   taskForm,
   createTask,
   getTasks,
+  getTaskDetails,
   cancelTask,
   getTask,
   editTask,

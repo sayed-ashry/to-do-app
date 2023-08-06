@@ -5,6 +5,8 @@ const router = Router();
 
 router.get("/", actions.getTasks);
 
+router.get("/taskDetails/:id", actions.getTaskDetails);
+
 router.get("/addTask", actions.taskForm);
 
 router.post("/addTask", actions.createTask);
