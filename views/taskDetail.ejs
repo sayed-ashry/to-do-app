@@ -1,16 +1,11 @@
-<%- include('./includes/head')  %>
-
-<%- include('./includes/nav')  %>
+<%- include('./includes/head') %> <%- include('./includes/nav') %>
 
 <div class="row">
   <li class="list-group-item">
     <p><%= item.title %></p>
     <h3><%= item.role %></h3>
-    <div class="mt-3">
-      <a class="btn btn-primary" href="/editTask/<%= item._id %>">Edit</a>
-      <a class="btn btn-primary" href="/cancelTask/<%= item._id %>">Cancel</a>
-    </div>
+    <a class="btn btn-primary" href="/cancelTask/<%= item.id %>"> Cancel </a>
+    <a class="btn btn-primary" href="/editTask/<%= item.id %>"> Edit </a>
   </li>
-
 </div>
-<%- include('./includes/footer')  %>
+<%- include('./includes/footer') %>

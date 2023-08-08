@@ -1,17 +1,43 @@
-<%- include('./includes/head')  %>
-<%- include('./includes/nav')  %>
+<%- include('./includes/head') %>
+    <%- include('./includes/nav') %>
 
-<div class="row">
-  <form action="/editTask" method="post" onsubmit="formValidation(event)">
-    <label for="title" class="form-label">Write your task : </label>
-    <div class="input-group mb-3">
-      <input type="hidden" name="id" class="form-control" value="<%= task.id %>">
-      <input type="text" name="title" class="form-control" value="<%= task.title %>">
-    </div>
-    <button type="submit" class="btn btn-primary">Send it!</button>
-  </form>
-  <p id="msg"></p>
-</div>
+        <div class="row">
 
-<%- include('./includes/footer')  %>
-<script src="/js/main.js"></script>
+            <form action="/<% if (editing) { %>editTask<% } else { %>addTask<% } %>" method="post"
+                onsubmit="formValidation(event)">
+
+                <label for="title" class="form-label">Write your task : </label>
+
+                <div class="input-group mb-3">
+
+                    <input type="text" name="title" class="form-control" id="title" value="<%=task.title %>" />
+
+                    <% if(editing){ %>
+                        <input type="hidden" name="id" class="form-control" value="<%=task.id %>" />
+                        <% } %>
+
+                </div>
+                <label for="role" class="form-label">who is responsible ? </label>
+                <div class="input-group mb-3">
+                    <input type="text" name="role" class="form-control" id="role" value="<%= task.role %>" />
+                </div>
+                <button type=" submit" class="btn btn-primary">Send it!</button>
+            </form>
+
+            <p id="msg"></p>
+
+
+            <% if(validationErrors.length> 0 ){ %>
+                <p>
+                    <%= validationErrors.map(e=> e.msg ) %>
+                </p>
+                <% } %>
+
+
+
+        </div>
+
+
+
+        <%- include('./includes/footer') %>
+            <script src="/js/main.js"></script>

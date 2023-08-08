@@ -1,19 +1,32 @@
-<%- include('./includes/head')  %>
-
-<%- include('./includes/nav')  %>
-
+<%- include('./includes/head') %> <%- include('./includes/nav') %>
 <div class="row">
-  <% if(tasks.length === 0){ %>
+  <% if(tasks.length===0){ %>
   <p>no tasks</p>
   <% }else{ %>
+
   <ul class="list-group">
     <% tasks.map((item)=>{ %>
-    <a class="nav-link" href="/taskDetails/<%= item._id %>">
-      <li class="list-group-item"><%= item.title %></li>
-    </a>
-    <%  }) %>
+
+    <li class="list-group-item">
+      
+      <%= item.title %>
+
+      <div class="d-flex justify-content-end">
+
+        <a class="btn btn-primary " href="/taskDetails/<%= item.id %>">
+          Details
+        </a>
+
+        <a class="btn btn-primary" href="/cancelTask/<%= item.id %>">
+          Cancel
+        </a>
+
+      </div>
+    </li>
+
+    <% }) %>
   </ul>
 
   <% } %>
 </div>
-<%- include('./includes/footer')  %>
+<%- include('./includes/footer') %>
